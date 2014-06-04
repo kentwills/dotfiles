@@ -12,7 +12,7 @@ fi
 
 #MY PREFERENCES ==============================================================
 export EDITOR VISUAL GIT_EDITOR
-EDITOR=vim
+EDITOR=emacs
 VISUAL=$EDITOR
 GIT_EDITOR=$EDITOR
 
