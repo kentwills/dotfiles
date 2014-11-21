@@ -114,3 +114,5 @@ if [ -f ~/venv/mypy/bin/activate ]; then
 fi
 
 # vim:et:sw=4:sts=4:
+
+export SELENIUM_HOST=`who | grep rkwills | cut -d \( -f 2 | cut -d \) -f 1`
