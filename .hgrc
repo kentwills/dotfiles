@@ -1,5 +1,6 @@
 [ui]
-username = Buck Golemon <buck@yelp.com>
+name = Kent Wills
+email = ronald.k.wills@gmail.com
 merge=internal:merge
 ignore=~/.hgignore_global
 
