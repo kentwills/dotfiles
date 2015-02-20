@@ -10,9 +10,9 @@
     packSizeLimit = 64m
 [diff]
     renamelimit = 0
-    tool = vimdiff
+	tool = vimdiff
 [difftool]
-    prompt = false
+	prompt = false
 [difftool "vimdiff"]
     # This is the same as the default command git would use,
     # except missing a -R (readonly) option.
@@ -53,5 +53,9 @@
     dt = difftool
     df = diff
     mt = mergetool
+	d = difftool
+
+[help]
+    autocorrect = 1
 
 # vim:sts=4:sw=4:et:
