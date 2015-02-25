@@ -58,7 +58,7 @@ fi
 terminal=$(ps -o comm= $PPID)
 case "$terminal" in
 lxterminal|gnome-terminal|xfce4-terminal)
-    export TERM=xterm-256color
+    export TERM=screen-256color
     ;;
 esac
 
