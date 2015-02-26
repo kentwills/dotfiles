@@ -5,7 +5,7 @@ My dotfiles, without me, are useless. Without my dotfiles, I am useless.
 
 Quick setup: (copy-paste to terminal)
 
-    git clone --no-checkout git@github.com:bukzor/dotfiles.git  tmp-dotfiles
+    git clone --no-checkout git@github.com:kentwills/dotfiles.git  tmp-dotfiles
     mv tmp-dotfiles/.git .
     rmdir tmp-dotfiles
     git checkout  .
