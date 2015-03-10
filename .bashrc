@@ -6,9 +6,8 @@
 if [ -d ~/bin ] ; then
     export PATH=~/bin:"${PATH}"
 fi
-if [ -d ~/prefices/brew/bin ] ; then
-    export PATH=~/prefices/brew/sbin:~/prefices/brew/bin:"${PATH}"
-    export HOMEBREW_CASK_OPTS="--caskroom=~/Caskroom --binarydir=~/prefices/brew/bin"
+if [ -d /usr/local/bin ] ; then
+    export PATH=/usr/local/sbin:/usr/local/bin:"${PATH}"
 fi
 if [ -d ~/.local/bin ] ; then
     export PATH=~/.local/bin:"${PATH}"
@@ -100,8 +99,8 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f ~/prefices/brew/etc/bash_completion ]; then
-    . ~/prefices/brew/etc/bash_completion
+  if [ -f /usr/local/etc/bash_completion ]; then
+    . /usr/local/etc/bash_completion
   elif [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
