@@ -14,6 +14,9 @@ function reset() {
     tput rmcup
     command reset
 }
+function envv() {
+    eval $(command envv "$@")
+}
 
 alias login='source ~/.bashrc'
 
