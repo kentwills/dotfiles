@@ -19,3 +19,6 @@ www_pages:
     main:
         host: dev24-devc.dev.yelpcorp.com
         port: 9003
+
+
+https://www.rkwills.dev.yelp.com/developers?bucket_set_developer_pages_service=enabled

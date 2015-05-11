@@ -122,16 +122,20 @@ if ! shopt -oq posix; then
   mkdir -p $WORKON_HOME $PROJECT_HOME
 
   # My very own python!
-  if [ -f ~/venv/mypy/bin/activate ]; then
-    function activate() { workon mypy; }
-    if [[ $TMUX ]]; then
-      PROMPT_COMMAND='eval `~/bin/tmux-env`'
-      activate
-    fi
-  fi
+  # if [ -f ~/venv/mypy/bin/activate ]; then
+  #  function activate() { workon mypy; }
+  #  if [[ $TMUX ]]; then
+  #    PROMPT_COMMAND='eval `~/bin/tmux-env`'
+  #    activate
+  #  fi
+  # fi
 fi
 
 # vim:et:sw=4:sts=4:
 
-export SELENIUM_HOST=${SELENIUM_HOST:-$(who | head -1 | grep rkwills | cut -d \( -f 2 | cut -d \) -f 1)}
 export PYTHONSTARTUP=~/.pythonrc.py
+
+if [ "$YELP_IN_SANDBOX" ]; then
+    export PS1="$PS1(sandbox)\$ "
+fi
+
