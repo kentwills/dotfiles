@@ -139,3 +139,4 @@ if [ "$YELP_IN_SANDBOX" ]; then
     export PS1="$PS1(sandbox)\$ "
 fi
 
+alias fixssh='export $(tmux show-environment | grep \^SSH_AUTH_SOCK=)'
