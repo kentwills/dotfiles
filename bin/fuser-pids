@@ -1,0 +1,2 @@
+#!/bin/sh
+exec fuser -v "$@" 2>&1 | sed '1d; s/.*://' | awk '{print $2}'
