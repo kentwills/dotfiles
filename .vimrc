@@ -77,31 +77,27 @@ set statusline +=col:\ %3v\     " current virtual column number (visual count)
     "ctrl+S to save.
     "NOTE: put this in ~/.bashrc for it to work properly in terminal vim:
     "       stty -ixon -ixoff
-    map <c-s> :update<cr>
-    imap <c-s> <c-o><c-s>
+    map <M-s> :update<cr>
+    imap <M-s> <c-o><c-s>
     "ctrl+A to select all
-    noremap <c-a> ggVG
-    imap <c-a> <esc><c-a>
+    noremap <M-a> ggVG
+    imap <M-a> <esc><c-a>
     "ctrl+C to copy
-    map <c-c> "+y
+    map <M-c> "+y
     "ctrl+Y to redo
-    map <c-y> <c-r>
-    imap <c-y> <c-o><c-r>
-    imap <c-r> <c-o><c-r>
+    map <M-y> <c-r>
+    imap <M-y> <c-o><c-r>
+    imap <M-r> <c-o><c-r>
     "ctrl+Z to undo
-    "map <c-z> u            "this clobbers UNIX ctrl+z to background vim
-    imap <c-z> <c-o>u
+    "map <M-z> u            "this clobbers UNIX ctrl+z to background vim
+    imap <M-z> <c-o>u
     "ctrl+Q to save/quit
-    map <c-q> :update\|q<cr>
-    imap <c-q> <c-o><c-q>
+    map <M-q> :update\|q<cr>
+    imap <M-q> <c-o><c-q>
     "ctrl+V to paste
-    map <c-v> "+gP
-    imap <c-v> <c-o>"+gP
-    vmap <c-v> "+P
-
-    "replace <CTRL-V> with <CTRL-B>
-    noremap <c-b> <c-v>
-    inoremap <c-b> <c-v>
+    map <M-v> "+gP
+    imap <M-v> <c-o>"+gP
+    vmap <M-v> "+P
 " }
 
 " common typos {
