@@ -1,9 +1,18 @@
-# ~/.bash_profile: executed by bash(1) for login shells.
-# see /usr/share/doc/bash/examples/startup-files for examples.
-# the files are located in the bash-doc package.
-#
+# all environment munging should go here.
+# this file only runs once, on login
 
-# the default umask is set in /etc/login.defs
+
+# set PATH so it includes user's private bin if it exists
+if [ -d ~/bin ] ; then
+    export PATH=~/bin:"${PATH}"
+fi
+if [ -d /usr/local/bin ] ; then
+    export PATH=/usr/local/sbin:/usr/local/bin:"${PATH}"
+fi
+if [ -d ~/.local/bin ] ; then
+    export PATH=~/.local/bin:"${PATH}"
+fi
+
 
 # include .bashrc if it exists
 if [ -f ~/.bashrc ]; then

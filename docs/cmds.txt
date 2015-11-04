@@ -22,3 +22,7 @@ www_pages:
 
 
 https://www.rkwills.dev.yelp.com/developers?bucket_set_developer_pages_service=enabled
+
+getent passwd rkwills
+
+scribereader -e uswest1-prod --tail service_developer_pages_requests | grep -v 127.0.0.1 

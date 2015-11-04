@@ -22,3 +22,6 @@
 [submodule ".vim/bundle/EditorConfig"]
 	path = .vim/bundle/EditorConfig
 	url = git@github.com:editorconfig/editorconfig-vim.git
+[submodule "/nail/home/rkwills/.vim/bundle/Dockerfile"]
+	path = /nail/home/rkwills/.vim/bundle/Dockerfile
+	url = https://github.com/ekalinin/Dockerfile.vim

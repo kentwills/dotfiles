@@ -4,7 +4,7 @@
 [core]
     excludesfile = ~/.gitignore_global
 [color]
-    ui = auto
+	ui = true
 [pack]
     threads = 0
     packSizeLimit = 64m
@@ -16,7 +16,7 @@
 [difftool "vimdiff"]
     # This is the same as the default command git would use,
     # except missing a -R (readonly) option.
-    cmd = vim -f -d -c \"wincmd l\" -c 'cd \"$GIT_PREFIX\"' \"$LOCAL\" \"$REMOTE\"
+    cmd = vim -f -d -c \"wincmd l\" \"$LOCAL\" \"$REMOTE\"
 [merge]
     tool = vimmerge
     conflictstyle = diff3
@@ -59,3 +59,6 @@
     autocorrect = 1
 
 # vim:sts=4:sw=4:et:
+[pager]
+	show = vim -R -
+    color = false

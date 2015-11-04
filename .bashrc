@@ -2,16 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# set PATH so it includes user's private bin if it exists
-if [ -d ~/bin ] ; then
-    export PATH=~/bin:"${PATH}"
-fi
-if [ -d /usr/local/bin ] ; then
-    export PATH=/usr/local/sbin:/usr/local/bin:"${PATH}"
-fi
-if [ -d ~/.local/bin ] ; then
-    export PATH=~/.local/bin:"${PATH}"
-fi
 
 # If not running interactively, don't do anything
 case $- in
@@ -77,6 +67,9 @@ PURPLE='\[\e[1;35m\]'
 case "$TERM" in
 *-256col*)
     # All's well.
+    ;;
+vt100)
+    export TERM=screen-256color
     ;;
 *-col*)
     echo LOW COLOR TERM: $TERM, $terminal
