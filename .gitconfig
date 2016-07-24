@@ -23,10 +23,6 @@
 [mergetool]
     prompt = false
     keepBackup = false
-[mergetool "vimmerge"]
-    cmd = vimmerge vim $BASE $LOCAL $REMOTE $MERGED
-    trustExitCode = true
-    keepBackup = false
 [push]
     default = current
 [advice]
@@ -41,7 +37,7 @@
         echo $remote/$merge\
     '
     base = !git merge-base `git upstream` HEAD
-    diffbase = !sh -c 'git diff `git base` "$@"' -
+    diffbase = !sh -c 'git diff -M -C `git base` "$@"' -
     lol = !git log --oneline --graph --decorate --color=always --pretty=format:'%C(auto)%h - %C(bold blue)%aE%Cgreen(%cr)%C(auto)%d%Creset %s' "$@" | \
         sed 's/@yelp.com//' | \
         less -XLFR && true
@@ -54,6 +50,9 @@
     df = diff
     mt = mergetool
     d = difftool
+[rerere]
+    # don't reuse recorded conflict resolutions
+    enabled = false
 
 [help]
     autocorrect = 1

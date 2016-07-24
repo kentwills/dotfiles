@@ -80,8 +80,8 @@ set statusline +=col:\ %3v\     " current virtual column number (visual count)
     map <M-s> :update<cr>
     imap <M-s> <c-o><c-s>
     "ctrl+A to select all
-    noremap <M-a> ggVG
-    imap <M-a> <esc><c-a>
+    noremap <C-a> ggVG
+    imap <C-a> <esc><c-a>
     "ctrl+C to copy
     map <M-c> "+y
     "ctrl+Y to redo
