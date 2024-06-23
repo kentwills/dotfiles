@@ -1,2 +1,2 @@
-# silly vim
+# Ensure swap files in vim aren't tracked by git
 .*.sw[a-z]
