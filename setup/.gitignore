@@ -1,3 +1,4 @@
 !*
 *.tar.*
 ruby2.6/
+__pycache__/

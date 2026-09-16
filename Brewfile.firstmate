@@ -1,0 +1,7 @@
+# Platform prerequisites for Firstmate's tmux backend.
+brew 'bash'
+brew 'git'
+brew 'gh'
+brew 'jq'
+brew 'node'
+brew 'tmux'

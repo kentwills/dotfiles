@@ -1,0 +1,19 @@
+#!/bin/sh
+# Start a supported harness in an isolated Firstmate home, not in a project.
+firstmate_home="${FM_HOME:-$HOME/.local/share/firstmate}"
+if [ ! -f "$firstmate_home/AGENTS.md" ]; then
+  printf '%s\n' 'Firstmate is not set up. Run: python3 setup/install.py --firstmate' >&2
+  exit 1
+fi
+firstmate_harness="${1:-codex}"
+if [ "$#" -gt 0 ]; then
+  shift
+fi
+case "$firstmate_harness" in
+  codex|claude) ;;
+  *) printf '%s\n' 'Usage: firstmate [codex|claude] [harness options...]' >&2; exit 2 ;;
+esac
+export FM_HOME="$firstmate_home"
+export FM_BACKEND="${FM_BACKEND:-tmux}"
+cd "$FM_HOME" || exit 1
+exec "$firstmate_harness" "$@"

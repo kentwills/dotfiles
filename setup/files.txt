@@ -1,0 +1,37 @@
+# Explicit install targets. Directories are linked as a unit.
+# Do not install inherited Claude settings, personal notes, or prefix wrappers.
+.bash_profile
+.bashrc
+.bash_completion
+.profile
+.sh_env
+.sh_rc
+.sh_advanced_rc
+.sh_lib
+.sh_plugins.d
+.zprofile
+.zshrc
+.zsh_completion
+.inputrc
+.gitconfig
+.gitignore_global
+.ssh/config
+.tmux.conf
+.vimrc
+.gvimrc
+.vim
+.nvim
+.config/nvim
+.pythonrc.py
+bin/brew
+bin/git-main
+bin/git-master
+bin/git-upstream
+bin/git-remote-upstream
+bin/git-fetch1
+bin/vimmerge
+bin/duration
+bin/tmux-color
+bin/tmux-cd
+bin/tmux-detach-others
+bin/firstmate

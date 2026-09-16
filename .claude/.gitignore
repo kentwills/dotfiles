@@ -13,3 +13,11 @@ plugins/
 cache/
 paste-cache/
 sessions/
+
+# These links point into the private manager-plugins submodule.
+!skills/em-promotion-reviewer
+!skills/ic-promotion-reviewer
+!skills/pep-reviewer
+!skills/promo-eval
+!skills/review-packet
+!skills/writing-style

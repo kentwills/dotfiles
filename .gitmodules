@@ -7,3 +7,27 @@
 [submodule ".config/kitty/kitty-gruvbox-theme"]
 	path = .config/kitty/kitty-gruvbox-theme
 	url = https://github.com/wdomitrz/kitty-gruvbox-theme.git
+[submodule ".claude/skill-sources/manager-plugins"]
+	path = .claude/skill-sources/manager-plugins
+	url = git@github.yelpcorp.com:rkwills/claude_manager_plugins.git
+[submodule "tools/firstmate"]
+	path = tools/firstmate
+	url = https://github.com/kunchenguid/firstmate.git
+[submodule "tools/treehouse"]
+	path = tools/treehouse
+	url = https://github.com/kunchenguid/treehouse.git
+[submodule "tools/no-mistakes"]
+	path = tools/no-mistakes
+	url = https://github.com/kunchenguid/no-mistakes.git
+[submodule "tools/gh-axi"]
+	path = tools/gh-axi
+	url = https://github.com/kunchenguid/gh-axi.git
+[submodule "tools/chrome-devtools-axi"]
+	path = tools/chrome-devtools-axi
+	url = https://github.com/kunchenguid/chrome-devtools-axi.git
+[submodule "tools/tasks-axi"]
+	path = tools/tasks-axi
+	url = https://github.com/kunchenguid/tasks-axi.git
+[submodule "tools/quota-axi"]
+	path = tools/quota-axi
+	url = https://github.com/kunchenguid/quota-axi.git

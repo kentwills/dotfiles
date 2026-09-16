@@ -1,0 +1,52 @@
+{
+  "npm": {
+    "gh-axi": "0.1.35",
+    "chrome-devtools-axi": "0.1.34",
+    "tasks-axi": "0.2.5",
+    "quota-axi": "0.1.45"
+  },
+  "binaries": {
+    "treehouse": {
+      "version": "2.3.0",
+      "assets": {
+        "darwin-amd64": {
+          "url": "https://github.com/kunchenguid/treehouse/releases/download/v2.3.0/treehouse-v2.3.0-darwin-amd64.tar.gz",
+          "sha256": "349afcc13c2beb20d846eb560a11b30e1a5cab8e2dfb22988a36aa7f213b5881"
+        },
+        "darwin-arm64": {
+          "url": "https://github.com/kunchenguid/treehouse/releases/download/v2.3.0/treehouse-v2.3.0-darwin-arm64.tar.gz",
+          "sha256": "1cb09bcfa830b4eec5e54beeaa71589adb9c5d828573dda0f5150e2d80cf13d5"
+        },
+        "linux-amd64": {
+          "url": "https://github.com/kunchenguid/treehouse/releases/download/v2.3.0/treehouse-v2.3.0-linux-amd64.tar.gz",
+          "sha256": "94fd2b2c20c35aac1ddc2941317890ad82c9916f5ccecbac4a50cda783eed10f"
+        },
+        "linux-arm64": {
+          "url": "https://github.com/kunchenguid/treehouse/releases/download/v2.3.0/treehouse-v2.3.0-linux-arm64.tar.gz",
+          "sha256": "408589ba72b58d5e942071ed863a83fd96566cfd1e514945daa59defde528bbb"
+        }
+      }
+    },
+    "no-mistakes": {
+      "version": "1.72.0",
+      "assets": {
+        "darwin-amd64": {
+          "url": "https://github.com/kunchenguid/no-mistakes/releases/download/v1.72.0/no-mistakes-v1.72.0-darwin-amd64.tar.gz",
+          "sha256": "b82a873be9473670f38abe1d9a21a64877c445307d85dfd8d10dfd8d3e1f90d2"
+        },
+        "darwin-arm64": {
+          "url": "https://github.com/kunchenguid/no-mistakes/releases/download/v1.72.0/no-mistakes-v1.72.0-darwin-arm64.tar.gz",
+          "sha256": "c3a38e95e050c30ee303806f22fbdc708f945e28d6b249d8e9540de65becb5c7"
+        },
+        "linux-amd64": {
+          "url": "https://github.com/kunchenguid/no-mistakes/releases/download/v1.72.0/no-mistakes-v1.72.0-linux-amd64.tar.gz",
+          "sha256": "c226b69b8b8115827d2e438ea8b32eaff9b89291a1d2fddc5ef2449017b8d927"
+        },
+        "linux-arm64": {
+          "url": "https://github.com/kunchenguid/no-mistakes/releases/download/v1.72.0/no-mistakes-v1.72.0-linux-arm64.tar.gz",
+          "sha256": "92f402654bdea845ded9cebca41fd565e2ae654bb81c9ce2282e0a2610df8736"
+        }
+      }
+    }
+  }
+}
