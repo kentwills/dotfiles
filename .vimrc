@@ -40,6 +40,7 @@ let g:plug_home = $VIMHOME .. '/pack/plugged/start'
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'hashivim/vim-terraform'
     Plug 'puppetlabs/puppet-syntax-vim'
+    Plug 'ekalinin/Dockerfile.vim'
 
     " migrated from pathogen
     Plug 'ConradIrwin/vim-bracketed-paste'
@@ -151,30 +152,32 @@ let g:plug_home = $VIMHOME .. '/pack/plugged/start'
 
     " send any copied lines to the clipboard, too
     vnoremap y y:call SendViaOSC52(getreg('"'))<cr>
-    vnoremap <C-c> y:call SendViaOSC52(getreg('"'))<cr>
+    vnoremap <M-c> y:call SendViaOSC52(getreg('"'))<cr>
 " }
 
-" windows-style mappings {
-    "ctrl+S to save.
-    "NOTE: put this in ~/.bashrc for it to work properly in terminal vim:
-    "       stty -ixon -ixoff
-    map <c-s> :update<cr>
-    imap <c-s> <c-o><c-s>
-    "ctrl+A to select all
-    noremap <c-a> ggVG
-    imap <c-a> <esc><c-a>
-    noremap <c-s-a> <c-a>
-    "ctrl+C to copy
-    map <c-c> y
-    "ctrl+Y to redo
-    map <c-y> <c-r>
-    imap <c-y> <c-o><c-r>
-    imap <c-r> <c-o><c-r>
-    "ctrl+Z to undo
-    "map <c-z> u            "this clobbers UNIX ctrl+z to background vim
-    imap <c-z> <c-o>u
-    "ctrl+V to paste, in visual mode
-    vmap <c-v> "+P
+" desktop-style mappings {
+    "Alt+S to save.
+    map <M-s> :update<cr>
+    imap <M-s> <c-o><M-s>
+    "Ctrl+A to select all.
+    noremap <C-a> ggVG
+    imap <C-a> <esc><C-a>
+    noremap <C-S-a> <C-a>
+    "Alt+C to copy; visual mode uses OSC52 above.
+    nmap <M-c> "+y
+    "Alt+Y or Alt+R to redo in insert mode.
+    map <M-y> <c-r>
+    imap <M-y> <c-o><c-r>
+    imap <M-r> <c-o><c-r>
+    "Alt+Z to undo in insert mode, leaving Ctrl+Z for job control.
+    imap <M-z> <c-o>u
+    "Alt+Q to save and quit.
+    map <M-q> :update\|q<cr>
+    imap <M-q> <c-o><M-q>
+    "Alt+V to paste.
+    map <M-v> "+gP
+    imap <M-v> <c-o>"+gP
+    vmap <M-v> "+P
 " }
 
 " common typos {
