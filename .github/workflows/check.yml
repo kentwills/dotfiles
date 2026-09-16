@@ -1,0 +1,40 @@
+name: Dotfiles checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+        # Public checks never fetch the private skill submodule.
+        with:
+          submodules: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install Linux shell tools
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y zsh tmux
+      - name: Install macOS shell tools
+        if: runner.os == 'macOS'
+        run: brew install tmux
+      - name: Check configs and behavior
+        shell: python
+        run: |
+          import subprocess
+          import sys
+          result = subprocess.run(['sh', 'setup/check.sh'], text=True,
+                                  stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+          print(result.stdout, end='')
+          if result.returncode:
+              # Surface diagnostics in check annotations as well as job logs.
+              detail = result.stdout[-12000:].replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+              print(f'::error title=Dotfiles checks failed::{detail}')
+          sys.exit(result.returncode)
