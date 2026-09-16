@@ -1,6 +1,7 @@
 local M = {}
 
-M.LAZY_HOME = vim.fs.normalize(vim.fn.stdpath("config") .. "/pack/lazy/start")
+-- Lazy owns plugin loading; do not expose these as eager Vim start packages.
+M.LAZY_HOME = vim.fs.normalize(vim.fn.stdpath("data") .. "/lazy")
 
 function M.setup()
   M.bootstrap()
@@ -70,6 +71,7 @@ function M.config()
       -- syntax highlighting (using treesitter)
       {
         "nvim-treesitter/nvim-treesitter",
+        branch = "master", -- this configuration uses the legacy setup API
         config = require("bukzor.tree-sitter").setup,
         build = ":TSUpdate",
       },
@@ -109,7 +111,7 @@ function M.config()
         dependencies = {
           "williamboman/mason.nvim",
           "nvim-lua/plenary.nvim",
-          "jose-elias-alvarez/null-ls.nvim",
+          { "nvimtools/none-ls.nvim", name = "null-ls.nvim" },
         },
         config = lsp.setup_mason_null_ls,
       },

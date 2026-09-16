@@ -21,6 +21,7 @@
 .gvimrc
 .vim
 .nvim
+.config/vim
 .config/nvim
 .pythonrc.py
 bin/brew

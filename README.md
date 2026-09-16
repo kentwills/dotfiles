@@ -59,6 +59,18 @@ The retired upload, IRC, and old deployment helpers have been removed. Removing
 them does not revoke credentials that appeared in earlier commits; revoke any
 that are still valid through their owning service.
 
+### Editor plugins
+
+Vim and Neovim share the base configuration through `~/.config/vim/init.vim`.
+Neovim's Lazy plugins live under `~/.local/share/nvim/lazy`, outside Vim's
+automatically loaded packages. Use `:Lazy restore` to restore the checked-in
+plugin versions.
+
+Language tools are optional: select servers and formatters with `:Mason`, and
+syntax parsers with `:TSInstall <language>`. Opening a file does not install
+additional toolchains. To request the full configured Mason tool list, launch
+Neovim with `DOTFILES_INSTALL_LANGUAGE_TOOLS=1 nvim`.
+
 ## Manager skills for Claude Code and Codex
 
 The source is the private

@@ -19,8 +19,8 @@ function M.setup()
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
 
-    -- Automatically install missing parsers when entering buffer
-    auto_install = true,
+    -- Install additional parsers explicitly with :TSInstall.
+    auto_install = false,
 
     -- List of parsers to ignore installing (for "all")
     ignore_install = {},
@@ -55,7 +55,7 @@ function M.setup()
       additional_vim_regex_highlighting = false,
     },
   })
-  require("nvim-treesitter").setup()
+  -- The plugin's runtime script initializes commands and modules once.
 end
 
 return M

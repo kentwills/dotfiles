@@ -186,7 +186,8 @@ end
 function M.setup_mason_lspconfig()
   local mason_lspconfig = require("mason-lspconfig")
   mason_lspconfig.setup({
-    ensure_installed = M.mason_install["lspconfig"],
+    ensure_installed = vim.env.DOTFILES_INSTALL_LANGUAGE_TOOLS == "1"
+        and M.mason_install["lspconfig"] or {},
   })
   mason_lspconfig.setup_handlers({ M.mason_lspconfig_handler })
 end
@@ -205,8 +206,9 @@ function M.setup_mason_null_ls()
   --require("null-ls").setup()
   require("null-ls").setup({ on_attach = M.autoformat })
   require("mason-null-ls").setup({
-    ensure_installed = M.mason_install["null-ls"],
-    automatic_installation = true,
+    ensure_installed = vim.env.DOTFILES_INSTALL_LANGUAGE_TOOLS == "1"
+        and M.mason_install["null-ls"] or {},
+    automatic_installation = false,
     -- pending https://github.com/jay-babu/mason-null-ls.nvim/pull/64
     handlers = { M.null_ls_handler },
   })
@@ -244,7 +246,13 @@ function M.autoformat(client, bufnr)
     )
   end
 
-  if client.supports_method("textDocument/formatting") then
+  local supports_formatting
+  if vim.fn.has("nvim-0.11") == 1 then
+    supports_formatting = client:supports_method("textDocument/formatting")
+  else
+    supports_formatting = client.supports_method("textDocument/formatting")
+  end
+  if supports_formatting then
     vim.api.nvim_clear_autocmds({ group = M.au_format, buffer = bufnr })
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = M.au_format,
