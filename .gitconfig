@@ -1,12 +1,12 @@
 [user]
-    name = Buck Evan
-    email = buck.2019@gmail.com
+    name = Kent Wills
+    email = rkwills@yelp.com
 [core]
     excludesfile = ~/.gitignore_global
 [init]
     defaultBranch = main
 [color]
-    ui = auto
+    ui = true
 [pack]
     threads = 0
     packSizeLimit = 64m
@@ -59,14 +59,18 @@
     branch-name = symbolic-ref -q --short HEAD
     tag-name = !sh -exc 'git tag -l --points-at ${1:-HEAD}' -
     base = !sh -exc 'git merge-base "$(git upstream)" ${1:-HEAD}' -
-    diffbase = !git dt $(git base)
-    lol = log --oneline --graph --decorate --color=always --pretty=format:\"%C(auto)%h %C(bold blue)%aL %Cgreen(%cr)%C(auto)%d%Creset %s\"
+    diffbase = !sh -c 'git diff -M -C `git base` "$@"' -
+    lol = !git log --oneline --graph --decorate --color=always --pretty=format:'%C(auto)%h - %C(bold blue)%aE%Cgreen(%cr)%C(auto)%d%Creset %s' "$@" | \
+        sed 's/@yelp.com//' | \
+        less -XLFR && true
     l = lol
     xl = lol --all
-    feature = !sh -ec 'b="bukzor/$1" && shift 1 && set -x && git master && git checkout -b "$b" "$@"' -
+    feature = !sh -ec 'b="kentwills/$1" && shift 1 && set -x && git master && git checkout -b "$b" "$@"' -
+    fetchdev = !sh -c 'colorize git fetch "ssh://git@git.yelpcorp.com/devs/$0" "$1":refs/remotes/"$0"/"$1"'
+    branch1 = !sh -c 'git fetch1 canon master && git checkout canon/master -B "$0" && mm && USER="${1-rkwills}" alert-irc new branch "$0"'
     vimdiff = difftool
     dt = difftool
-    d = diff
+    d = difftool
     mt = mergetool
     wip = commit -m 'WIP' --no-verify
     amend = commit --amend --no-edit
@@ -83,3 +87,12 @@
     path = ./private-dotfiles/.gitconfig
 
 # vim:sts=4:sw=4:et:
+
+[rerere]
+    # Do not reuse recorded conflict resolutions.
+    enabled = false
+[help]
+    autocorrect = 1
+[pager]
+    show = vim -R -
+    color = false

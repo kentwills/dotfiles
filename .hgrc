@@ -1,7 +1,7 @@
 %include /etc/mercurial/hgrc.d/optins/256color
 
 [ui]
-username=Buck Evan <buck.2019@gmail.com>
+username = Kent Wills <ronald.k.wills@gmail.com>
 merge = vimmerge
 ignore=~/.hgignore_global
 
