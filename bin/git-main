@@ -1,8 +1,14 @@
 #!/bin/bash
 set -euo pipefail
 upstream="$(git upstream)"
-branch=$(basename "$upstream")
+remote="${upstream%%/*}"
+branch="${upstream#*/}"
 
 set -x
-git fetch1 "$upstream"
-git checkout "$upstream" -B "$branch"
+git fetch "$remote" "refs/heads/$branch:refs/remotes/$upstream"
+if git show-ref --verify --quiet "refs/heads/$branch"; then
+    git switch "$branch"
+else
+    git switch --track -c "$branch" "$upstream"
+fi
+git merge --ff-only "$upstream"

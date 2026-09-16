@@ -76,15 +76,7 @@ source_dir ~/.sh_plugins.d
 trysource ~/private-dotfiles/.sh_advanced_rc
 
 
-DIRENV="$HOMEBREW_PREFIX/bin/direnv"
-if ! [[ -x "$DIRENV" ]]; then
-  cat >&2 <<'EOF'
-NOTE: `direnv` is not installed. To fix:
-
-  brew install direnv
-
-EOF
-fi
+DIRENV="$(command -v direnv)"
 _direnv_hook() {
   if [[ -x "$DIRENV" ]]; then
     trap -- '' SIGINT;

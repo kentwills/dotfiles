@@ -1,38 +1,14 @@
-#!/bin/bash
-set -eu
-
-BREWDIR=/opt/homebrew
-BREW=$BREWDIR/bin/brew
-if ! [ -d "$BREWDIR" ]; then
-  if yesno "Homebrew is missing. Install homebrew?"; then
-    set +eu
-    eval "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    set -eu
-    linuxbrew=/home/linuxbrew/.linuxbrew
-    if [ -d "$BREWDIR" ]; then
-      : all\'s swell
-    elif [ -d "$linuxbrew" ]; then
-      sudo ln -sf "$linuxbrew" -T "$BREWDIR"
-    else
-      echo 'Where'\''s homebrew?' >&2
-      exit 1
-    fi
-  else
-    echo 'Homebrew not installed.' >&2
-    return 1
+#!/bin/sh
+# Compatibility entry point for machines where ~/bin precedes Homebrew.
+# Never install software or rewrite system paths as a side effect.
+for dotfiles_brew in \
+  "${HOMEBREW_PREFIX:-/nonexistent}/bin/brew" \
+  /opt/homebrew/bin/brew \
+  /usr/local/bin/brew \
+  /home/linuxbrew/.linuxbrew/bin/brew; do
+  if [ -x "$dotfiles_brew" ] && ! [ "$dotfiles_brew" -ef "$0" ]; then
+    exec "$dotfiles_brew" "$@"
   fi
-fi
-
-if ! [ -d "$BREWDIR" ]; then
-  echo "Homebrew is still missing?!" >&2
-  exit 1
-fi
-
-BEFORE="$BREWDIR/.before"
-touch "$BEFORE"
-
-$BREW "$@"
-
-if [ "$BREWDIR/opt" -nt "$BEFORE" ] || [ "$BREWDIR/Cellar" -nt "$BEFORE" ]; then
-  brew-handle-gnubin
-fi
+done
+printf '%s\n' 'Homebrew is not installed. See https://brew.sh/.' >&2
+exit 127

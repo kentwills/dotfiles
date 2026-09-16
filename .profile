@@ -1,9 +1,4 @@
 # ~/.profile: executed for all login shells.
-# shellcheck disable=SC2006  # allow backticks for hecka-ancient shells
-home=`sh -c 'unset HOME; echo ~'`
-if [ -d "$home" ]; then
-  export HOME="$home"
-fi
 
 # If not running interactively, don't do anything
 case $- in

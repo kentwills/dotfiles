@@ -7,10 +7,12 @@ export PATH LOGNAME USER HOME LANG TERM SHELL
 if ! command -v sh > /dev/null; then
   PATH="$(/usr/bin/getconf PATH)"
 fi
-# these have only one correct value
-LOGNAME="$(whoami)"
-USER="$LOGNAME"
-HOME=`sh -c "unset HOME; echo ~$USER"`
+# Preserve the caller's environment, including containers and custom homes.
+USER="${USER:-$(id -un)}"
+LOGNAME="${LOGNAME:-$USER}"
+if [ -z "$HOME" ]; then
+  HOME=$(sh -c 'unset HOME; echo ~')
+fi
 if [ -z "$LANG" ]; then
   LANG='en_US.UTF-8'
 fi

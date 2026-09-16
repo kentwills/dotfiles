@@ -26,18 +26,9 @@
 [difftool]
     prompt = false
 [difftool "vimdiff"]
-    # unset GIT_EXTERNAL_DIFF, to allow :!git diff to work
-    # unset GIT_DIR and GIT_WORK_TREE, because it confuses GitSigns badly
-    # The `vim` command is the same that git would use by default, except
-    # missing a -R (readonly) option.
-    cmd = env \
-        --unset=GIT_EXTERNAL_DIFF \
-        --unset=GIT_DIR \
-        --unset=GIT_WORK_TREE \
-        --chdir=\"$GIT_PREFIX\" \
-        vim -f -d -c \"wincmd l\" \"$LOCAL\" \"$MERGED\"
-        # or maybe:
-        #   vim -f -d -c \"wincmd l\" \"$LOCAL\" \"$GIT_PREFIX/$MERGED\"
+    # Keep Git commands inside Vim independent of the parent diff invocation.
+    # Shell builtins work with both macOS and GNU userlands.
+    cmd = "(unset GIT_EXTERNAL_DIFF GIT_DIR GIT_WORK_TREE; vim -f -d -c \"wincmd l\" \"$LOCAL\" \"$REMOTE\")"
 [merge]
     renamelimit = 0
     tool = vimmerge
@@ -47,7 +38,7 @@
     keepBackup = false
     trustExitCode = true
 [mergetool "vimmerge"]
-    cmd = vimmerge $REMOTE $MERGED $LOCAL $BASE
+    cmd = vimmerge \"$REMOTE\" \"$MERGED\" \"$LOCAL\" \"$BASE\"
 [push]
     default = current
 [pull]
@@ -66,8 +57,6 @@
     l = lol
     xl = lol --all
     feature = !sh -ec 'b="kentwills/$1" && shift 1 && set -x && git master && git checkout -b "$b" "$@"' -
-    fetchdev = !sh -c 'colorize git fetch "ssh://git@git.yelpcorp.com/devs/$0" "$1":refs/remotes/"$0"/"$1"'
-    branch1 = !sh -c 'git fetch1 canon master && git checkout canon/master -B "$0" && mm && USER="${1-rkwills}" alert-irc new branch "$0"'
     vimdiff = difftool
     dt = difftool
     d = difftool
@@ -80,7 +69,6 @@
     top = rev-parse --show-toplevel
     s = status -s
     topic = !set -x && git fetch origin master && git checkout FETCH_HEAD -b
-    top = rev-parse --show-toplevel
 [http]
     cookiefile = ~/.gitcookies
 [include]

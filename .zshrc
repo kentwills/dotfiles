@@ -9,6 +9,10 @@ case $- in
       *) return;;
 esac
 
+if [ "${DOTFILES_ENV_LOADED:-}" != 1 ]; then
+  . "$HOME/.sh_env"
+fi
+
 # no ding!
 ZBEEP=""
 
@@ -58,12 +62,16 @@ zstyle ':completion:*' select yes
 ## this causes ambiguous completions:
 #zstyle ':completion:*' menu yes
 
+# Use terminfo immediately; keyboard calibration is an optional manual step.
+zmodload zsh/terminfo
+typeset -A key
+key[Backspace]="${terminfo[kbs]:-$'\177'}"
+key[Home]="${terminfo[khome]:-$'\e[H'}"
+key[End]="${terminfo[kend]:-$'\e[F'}"
+key[Up]="${terminfo[kcuu1]:-$'\e[A'}"
+key[Down]="${terminfo[kcud1]:-$'\e[B'}"
 zkbd_dir="${ZDOTDIR:-$HOME}/.zkbd"
 zkbd_file="$zkbd_dir/$TERM-$VENDOR-$OSTYPE"
-ln -sf $zkbd_file $zkbd_dir/$TERM.tmp
-if ! [[ "$(grep -c '^key\[' "$zkbd_file")" -eq 24 ]]; then
-    autoload zkbd && zkbd
-fi
 if [[ -e "$zkbd_file" ]]; then
   source "$zkbd_file"
 fi

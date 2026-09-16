@@ -26,3 +26,10 @@ trash/
 
 # dontcare:
 .fzf/
+
+# Brew dependencies are declared in Brewfile; old machine snapshots are not locks.
+Brewfile.lock.json
+
+# Local overrides and credentials never belong in the public dotfiles.
+private-dotfiles/
+.ssh/config.local

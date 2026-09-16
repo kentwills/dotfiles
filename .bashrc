@@ -10,6 +10,10 @@ case "$-${COSHELL_VERSION:+i}" in
       *) return;;
 esac
 
+if [ "${DOTFILES_ENV_LOADED:-}" != 1 ]; then
+  . "$HOME/.sh_env"
+fi
+
 
 # bash options  ==============================================================
 

@@ -3,6 +3,9 @@
 # generally, this is aliases, shell settings, functions
 # if your command only needs to be run once per *terminal* use ~/.sh_env
 
+. "$HOME/.sh_lib/functions.d/has.sh"
+. "$HOME/.sh_lib/functions.d/trysource.sh"
+
 # don't put duplicate lines in the history. See bash(1) for more options
 HISTCONTROL=erasedups
 
@@ -16,12 +19,10 @@ HISTTIMEFORMAT='[%F %a %p %I:%M%z]'
 alias time="/usr/bin/time -ao /dev/tty"
 alias tmux-env='eval "$(tmux show-env -s)"'
 alias fixssh='export $(tmux show-environment | grep \^SSH_AUTH_SOCK=)'
-alias wafm='waf configure build --locales="en_US"'
 alias emacs='vim'
 envv() {
   eval "$(command envv "$@")"
 }
-alias crterm='export TERM=xterm-256color; . ~/.bashrc'
 reset() {
     ## http://askubuntu.com/a/123296/23034
     tput rmcup
@@ -171,9 +172,6 @@ PS1="$(esc "$YELLOW")$PS1PWD
 "$(esc "$RESET") "
 unset esc
 
-if [ "$YELP_IN_SANDBOX" ]; then
-  PS1="$PS1(sandbox)\$ "
-fi
 export PS1
 
 # extra shell settings for work
@@ -181,5 +179,6 @@ export PS1
 trysource ~/private-dotfiles/.sh_rc
 . "$HOME/.sh_advanced_rc"
 
-echo "==> $HOME/TODO.md <=="
-cat "$HOME/TODO.md"
+if [ "${DOTFILES_SHOW_TODO:-0}" = 1 ] && [ -r "$HOME/TODO.md" ]; then
+  cat "$HOME/TODO.md"
+fi
