@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+exec pstree -p "$1" |
+    grep -Po '\(\d+\)' |
+    grep -Po '\d+' |
+    xargs -r ps -wwwo stat,uid,pid,ppid,pgid,sid,c,pri,ni,rss:8,sz:8,wchan:20,stime,tty,time,cmd --forest

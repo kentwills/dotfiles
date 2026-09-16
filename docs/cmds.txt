@@ -1,0 +1,28 @@
+pgctl all-data | grep rkwills | jq .label -r | xargs --replace pgbuild --delete {}
+pgbuild --delete rkwills-4a2c rkwills-1111 rkwills-f99f rkwills-2 rkwills rkwills-570d
+tmux rename-session yelp
+
+tmux-color
+tmux set status-bg colour160
+pgctl all-data | grep rkwills | jq .label -r | xargs --replace pgbuild --delete {}
+pgbuild --delete rkwills-4a2c rkwills-1111 rkwills-f99f rkwills-2 rkwills rkwills-570d
+tmux rename-session yelp
+tail -f /nail/home/rkwills/.pgconf-rkwills/logs/*
+tools/watch-templates
+pip install git+ssh://git@git.yelpcorp.com/packages/ubuntu/yelp_bootstrap
+waf configure build --environment=stage, prod
+
+
+services:
+config/local/smartstack_services.yaml [yaml]
+www_pages:
+    main:
+        host: dev24-devc.dev.yelpcorp.com
+        port: 9003
+
+
+https://www.rkwills.dev.yelp.com/developers?bucket_set_developer_pages_service=enabled
+
+getent passwd rkwills
+
+scribereader -e uswest1-prod --tail service_developer_pages_requests | grep -v 127.0.0.1

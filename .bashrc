@@ -37,6 +37,9 @@ shopt -s extglob
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
   trysource  "$HOMEBREW_PREFIX"/etc/bash_completion
+  if [ "$HOMEBREW_PREFIX" != /usr/local ]; then
+    trysource /usr/local/etc/bash_completion
+  fi
   trysource /usr/share/bash-completion/bash_completion
   trysource /etc/bash_completion
 

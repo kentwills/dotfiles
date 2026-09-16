@@ -1,4 +1,5 @@
 #!/bin/bash
-mco find -F role=devbox |
-    sort -u |
+grep HOSTNAME /etc/systems.d/groups/devpg.d/* -h |
+    sed 's/HOSTNAME=//' |
+    sort |
     ssh-each "$@"

@@ -60,6 +60,11 @@ else
   warn "please brew install coreutils"
 fi
 
+# Retain Intel Homebrew tools alongside the platform's configured prefix.
+if [ -d /usr/local/bin ]; then
+  export PATH="$PATH:/usr/local/sbin:/usr/local/bin"
+fi
+
 # set PATH so it includes user's personal bin if it exists (or is created)
 export PATH=~/.local/bin:~/private-dotfiles/bin:~/bin:"$PATH"
 export GOPATH=~/prefix/gopath
@@ -136,7 +141,7 @@ else
 fi
 case "$terminal" in
 lxterminal | gnome-terminal | xfce4-terminal)
-  export TERM=xterm-256color
+  export TERM=screen-256color
   ;;
 tmux | "tmux: server")
   export TERM=xterm-256color
@@ -160,6 +165,10 @@ init)
   ;;
 esac
 
+if [ "$TERM" = vt100 ]; then
+  export TERM=screen-256color
+fi
+
 # Further environment
 export PREFIX
 PREFIX="$(abspath "$HOME/../..")"
@@ -179,10 +188,6 @@ else
   unset COLORTERM
 fi
 export TERM_ITALICS=1
-
-# My very own python!
-activate() { trysource ~/venv/"$USER"-venv/bin/activate; }
-activate
 
 export TMPDIR
 # NB: macos date(1) doesn't support -I nor -Id
@@ -220,8 +225,6 @@ fi
 ##   eval "$(pyenv init -)"
 ## fi
 
-# added by travis gem
-trysource ~/.travis/travis.sh
 if has aactivator; then
   eval "$(aactivator init)"
 fi

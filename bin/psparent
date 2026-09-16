@@ -1,0 +1,13 @@
+#!/bin/bash
+set -eu
+pid="$1"
+
+while true; do
+    ppid="$(ps -o ppid:1= "$pid")"
+    if [[ "$ppid" -eq 1 ]]; then
+        echo "$pid"
+        exit 0
+    else
+        pid="$ppid"
+    fi
+done

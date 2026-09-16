@@ -4,9 +4,7 @@ if ! has declare; then
   return 0
 fi
 
-# completions for travis, added by travis gem
 . ~/.sh_lib/functions.d/trysource.sh
-trysource ~/.travis/travis.sh
 
 
 if [ "${BASH:-}" ]; then
